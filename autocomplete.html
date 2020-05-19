@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mainHolder">
+    <h2 id="main">  STATE CAPITAL LOOKUP</h2>
+    <input type="search" id="value">
+    </div>
+    <div id="output"></div>
+    <style>
+   
+        .mainHolder{
+            background-color:gray;
+            padding-bottom: 20px;
+        }
+        #main{
+            color: white;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+        h2{
+            text-align: center;
+            font-family: arial;
+        }
+        input{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .output{
+            margin: 0 auto;
+        }
+        body{
+            background-color: black;
+        }
+        #holder:nth-child(odd){
+           background-color: lightgrey;
+           height: auto;
+           padding-top: 20px;
+           padding-bottom: 20px;
+           margin-bottom: 10px;
+           margin-top: 10px;
+           border-radius: 20px;
+        }
+        #holder:nth-child(even){
+            background-color: lightgrey;
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-radius: 20px;
+
+        }
+        p{
+            margin: 0;
+            text-align: center;
+        
+        }
+        h2{
+            margin: 0;
+        }
+        h3{
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+    <script>
+/*
+let text = document.getElementById("value").addEventListener("input",start);
+let holder = document.getElementsByClassName("holder");
+function start(){
+    
+    let textValue= document.getElementsByTagName("input")[0].value;
+    for(let i = 0;i<holder.length;i++){
+        
+        let holderText = holder[i].getElementsByTagName("h3")[0];
+        if(holderText.innerHTML.toUpperCase().indexOf(textValue.toUpperCase()) > -1){
+    holder[i].style.display=  "block"
+}else{
+    holder[i].style.display=  "none"
+}
+    }
+}
+
+
+function display(){
+fetch("states.json")
+    .then(function(repsonse){
+        return repsonse.json()
+    }).then(function(data){
+        let output = "";
+        data.forEach(function(item){
+            output += 
+            `
+            <div class="holder" id="none">
+<h2>${item.abbr}</h2>
+<h3>${item.name}</h2>
+</div>
+            `
+        })
+let divs = document.getElementById("output").innerHTML = output;
+    })
+       
+}
+display();
+  */
+  let text = document.getElementById("value").addEventListener("input",start);
+
+
+
+function start(){
+    fetch("states.json")
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        let textZaDiv = "";
+        let textValue = document.getElementsByTagName("input")[0].value;
+        //pocetak petlje
+        data.forEach(function(item){
+        let itemValue = item.name;
+     if(itemValue.toUpperCase().indexOf(textValue.toUpperCase()) > -1){
+        textZaDiv +=
+            `
+            <div id="holder">
+            <h2>${itemValue}</h2>
+            <h3>${item.capital}</h3>
+            <p>${item.abbr}</h2>
+            </div>
+            `
+            document.getElementById('output').innerHTML = textZaDiv;
+             if(textValue == ""){
+document.getElementById("output").innerHTML="";
+        }
+     }
+        })
+         //kraj petlje
+    })
+}
+
+
+
+
+    </script>
+</body>
+</html>
